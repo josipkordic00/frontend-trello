@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.addcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.addinput {
+  padding-left: 10px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+}
+
+.cards {
+  padding: 10px;
+}
+
+.addlist_button {
+  width: fit-content;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.addlist_button:hover {
+  cursor: pointer;
+  background-color: #1b1b1b;
+}
+
+.horizontal {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 16px;
+}
+
+li {
+  margin: 10px;
+}
+
+.content {
+  background-color: #33333355;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px 10px 0px 10px;
+  overflow-y: auto;
+  overflow-x: auto;
+}

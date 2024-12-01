@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+.main {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+}

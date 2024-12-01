@@ -1,0 +1,39 @@
+<div class="content">
+  <div class="addcontainer">
+    <!-- da se add list ne prikaziva ukoliko nema
+       nijedan board i ako board nije selected
+       (boardID se prima samo ako je okinuta funkcija sa shared.ts) -->
+    <div
+      *ngIf="boards.length > 0 && boardId != 0"
+      class="addlist_button"
+      (click)="toggleInputField()"
+    >
+      <h3>Add List</h3>
+    </div>
+
+    <!-- Input Field for New List -->
+    <div *ngIf="showInputField" class="input-container">
+      <input
+        class="addinput"
+        type="text"
+        [(ngModel)]="newListName"
+        placeholder="Enter List name"
+      />
+      <button (click)="saveList()">Save</button>
+    </div>
+  </div>
+  <!-- Display Cards -->
+  <div class="cards">
+    <ul class="horizontal">
+      <li>
+        <!-- prosljeđivanje array tasklist, board id i
+           primanje okidača za refreshanje kartica unutar taskliste-->
+        <app-list
+          [taskLists]="taskLists"
+          [boardId]="boardId"
+          (refreshBoards)="loadBoardData(boardId)"
+        ></app-list>
+      </li>
+    </ul>
+  </div>
+</div>

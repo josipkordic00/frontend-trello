@@ -1,0 +1,29 @@
+<div class="sidebar">
+  <div class="header">
+    <span>Your boards</span>
+    <button class="btnboard" (click)="toggleInputField()">+</button>
+  </div>
+
+  <div *ngIf="showInputField" class="input-container">
+    <input
+      class="addinput"
+      type="text"
+      [(ngModel)]="newBoardName"
+      placeholder="Enter board name"
+    />
+    <button (click)="saveBoard()">Save</button>
+  </div>
+
+  <ul>
+    <!-- svaki item u boards listi ima mogucnost pozivanja onSelect metode
+    i prosljeđivanja id ot kliknutog elementa, 
+    taj element ce postati currentSelection i imat ce klasu selected -->
+    <li
+      *ngFor="let item of boards"
+      (click)="onSelect(item.id)"
+      [class.selected]="item.id === currentSelection"
+    >
+      {{ item.name }}
+    </li>
+  </ul>
+</div>

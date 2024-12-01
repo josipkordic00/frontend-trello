@@ -1,0 +1,62 @@
+<div class="field">
+  <!-- listanje tasklista -->
+  <div *ngFor="let taskList of taskLists" class="card border-0">
+    <div class="card-body">
+      <h5 class="card-title">{{ taskList.name }}</h5>
+      <hr />
+      <ul>
+        <!--listanje kartica unutar liste-->
+        <li *ngFor="let card of taskList.cards" (click)="onCardClick(card)">
+          <h3>{{ card.name }}</h3>
+        </li>
+      </ul>
+
+      <!--otvori input samo od one liste na kojoj je pritisnut button add a card
+        (spremljeno u activeTaskList)-->
+      <div *ngIf="activeTaskList === taskList" class="input-container">
+        <input
+          class="addinput"
+          type="text"
+          [(ngModel)]="newCardName"
+          placeholder="Enter Card name"
+        />
+        <button (click)="saveCard(taskList)">Save</button>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="media align-items-center">
+        <!--da se ne prikaziva add a card od aktivne taskliste-->
+        <div
+          *ngIf="activeTaskList !== taskList"
+          (click)="toggleInputField(taskList)"
+          class="add_button"
+        >
+          Add a card
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--otvaranje prompta za spremanje deskripcije u karticu-->
+  <div class="modal" *ngIf="isModalOpen">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>{{ selectedCard?.name }}</h2>
+      
+      <!--ukoliko je desktipcija od odabrane kartice postavljena prikazi je,
+      ukoliko nije prikazi prompt i save button(ng-template)-->
+      <div *ngIf="selectedCard?.description; else showTextarea">
+        <p class="text-modal">{{ selectedCard?.description }}</p>
+      </div>
+
+      <ng-template #showTextarea>
+        <textarea
+          [(ngModel)]="userInput"
+          placeholder="Input text..."
+        ></textarea>
+        <button class="batn" (click)="submitInput()">Save</button>
+      </ng-template>
+    </div>
+  </div>
+</div>
