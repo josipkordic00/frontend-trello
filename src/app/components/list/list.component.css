@@ -58,7 +58,7 @@ body .footer {
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 0rem 1.25rem;
+  padding: 1rem 1.25rem;
 }
 
 .card-title {
@@ -69,6 +69,10 @@ body .footer {
   font-weight: 500;
   font-style: normal;
   color: white;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow:ellipsis; /* Add ellipsis for overflowed text */
+ 
 }
 
 ul li {
@@ -90,7 +94,7 @@ li {
   text-align: center;
 }
 
-ul li:hover {
+h3:hover {
   cursor: pointer;
   color: white;
 }
@@ -200,4 +204,67 @@ input:focus {
 
 .text-modal {
   color: rgb(176, 176, 176);
+}
+
+.card-list {
+  min-height: 100px;
+}
+
+.card-item {
+  padding: 8px;
+  margin-bottom: 4px;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  cursor: move;
+}
+
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.card-container h3 {
+  flex: 1; /* Allow h3 to take available space */
+  margin: 0;
+  font-size: 16px;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+  box-sizing: border-box;
+}
+
+.menu-items {
+  display: flex; /* Align icons horizontally */
+  flex-shrink: 0; /* Prevent shrinking of menu items */
+}
+
+.more-vert:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.none-vert {
+  color: #333;
+}
+
+.maticon {
+  overflow: visible !important;
+  color: #484848;
+}
+
+.maticon:hover {
+  color: rgb(255, 62, 94);
+}
+
+.card-h {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

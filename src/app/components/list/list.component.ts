@@ -14,11 +14,12 @@ import { TaskList } from '../../models/task-list.model';
 
 import { Card } from '../../models/cards.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })
@@ -33,6 +34,7 @@ export class ListComponent implements OnInit, OnChanges {
   taskListId = 0;
 
   activeTaskList: TaskList | null = null;
+  activeCard: Card | null = null;
 
   http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/cards/tasklist/';
@@ -46,6 +48,33 @@ export class ListComponent implements OnInit, OnChanges {
     if (changes['taskLists']) {
       this.sortTaskListsCards();
     }
+  }
+
+  onDeleteCard(event: Event, card: Card) {
+    event.stopPropagation();
+    console.log('Delete clicked', card);
+    this.http.delete(`http://localhost:8080/cards/${card.id}`).subscribe(
+      () => {
+        this.refreshBoards.emit(this.boardId); // Trigger UI refresh
+      },
+      (error) => {
+        console.error('Error deleting card:', error);
+        alert('Failed to delete the card. Please try again.');
+      }
+    );
+  
+  }
+
+  onDeleteTaskList(tasklist: TaskList) {
+    this.http.delete(`http://localhost:8080/tasklists/${tasklist.id}`).subscribe(
+      () => {
+        this.refreshBoards.emit(this.boardId); // Trigger UI refresh
+      },
+      (error) => {
+        console.error('Error deleting tasklist:', error);
+        alert('Failed to delete the tasklist. Please try again.');
+      }
+    );
   }
 
   //sortiranje kartica u listi

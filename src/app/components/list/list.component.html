@@ -2,12 +2,22 @@
   <!-- listanje tasklista -->
   <div *ngFor="let taskList of taskLists" class="card border-0">
     <div class="card-body">
-      <h5 class="card-title">{{ taskList.name }}</h5>
+      <div class="card-h">
+      <div class="card-title">{{ taskList.name }}</div>
+      <mat-icon class="maticon" (click)="onDeleteTaskList(taskList)">delete</mat-icon>
+    </div>
       <hr />
       <ul>
         <!--listanje kartica unutar liste-->
         <li *ngFor="let card of taskList.cards" (click)="onCardClick(card)">
+          <div class="card-container">
           <h3>{{ card.name }}</h3>
+          <div class="menu-items">
+            
+            <mat-icon class="maticon" (click)="onDeleteCard($event, card)">delete</mat-icon>
+          </div>
+        </div>
+        
         </li>
       </ul>
 
